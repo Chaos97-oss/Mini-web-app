@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Asset Table</title>
+</head>
+<body>
+    <h1 th:text="'Name: ' + ${name}"></h1>
+    <h2 th:text="'Location: ' + ${location}"></h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Asset Name</th>
+                <th>Amount</th>
+                <th>Duration</th>
+                <th>Purchased Date</th>
+                <th>Branch</th>
+                <th>Last Dep. Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="asset : ${assets}">
+                <td th:text="${asset.categoryId}"></td>
+                <td th:text="${asset.assetName}"></td>
+                <td th:text="${asset.assetAmount}"></td>
+                <td th:text="${asset.durationMonths}"></td>
+                <td th:text="${asset.purchasedDate}"></td>
+                <td th:text="${asset.branch}"></td>
+                <td th:text="${asset.lastDepDate}"></td>
+                <td th:text="${asset.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
