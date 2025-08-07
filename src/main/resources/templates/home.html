@@ -22,13 +22,13 @@
         </thead>
         <tbody>
             <tr th:each="asset : ${assets}">
-                <td th:text="${asset.categoryId}"></td>
+                <td th:text="${asset.category}"></td>
                 <td th:text="${asset.assetName}"></td>
-                <td th:text="${asset.assetAmount}"></td>
-                <td th:text="${asset.durationMonths}"></td>
+                <td th:text="${asset.Amount}"></td>
+                <td th:text="${asset.duration}"></td>
                 <td th:text="${asset.purchasedDate}"></td>
                 <td th:text="${asset.branch}"></td>
-                <td th:text="${asset.lastDepDate}"></td>
+                <td th:text="${asset.lastDepreciationDate}"></td>
                 <td th:text="${asset.status}"></td>
             </tr>
         </tbody>

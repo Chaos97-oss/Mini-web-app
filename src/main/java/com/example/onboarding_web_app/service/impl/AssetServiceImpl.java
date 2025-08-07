@@ -18,6 +18,8 @@ import com.example.onboarding_web_app.repository.AssetRepository;
 import com.example.onboarding_web_app.service.AssetService;
 import com.opencsv.CSVReader;
 
+import jakarta.annotation.PostConstruct;
+
 @Service
 public class AssetServiceImpl implements AssetService {
 
@@ -32,14 +34,14 @@ public class AssetServiceImpl implements AssetService {
         return assetRepository.findAll();
     }
 
-    // @Override
-    // public void loadAssetsFromCSV() {
-    //     System.out.println("CSV loading not yet implemented");
-    // }
+    @PostConstruct
+    public void init() {
+        loadAssetsFromCSV();
+    }
 
-   @Override
+    @Override
     public void loadAssetsFromCSV() {
-            try {
+        try {
             ClassPathResource resource = new ClassPathResource("data.csv");
             CSVReader reader = new CSVReader(new InputStreamReader(resource.getInputStream()));
             String[] line;
@@ -51,20 +53,19 @@ public class AssetServiceImpl implements AssetService {
             while ((line = reader.readNext()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false;
-                    continue; // skip header
+                    continue; 
                 }
-                if (line.length < 10) {
-        System.err.println("Skipping row with insufficient columns: " + Arrays.toString(line));
-        continue;
-        }
+                if (line.length < 8) {
+                    System.err.println("Skipping row with insufficient columns: " + Arrays.toString(line));
+                    continue;
+                }
 
                 Asset asset = new Asset();
-                asset.setAssetName(line[0]);
-                asset.setCategoryId(line[1]);
+                asset.setCategoryId(line[0]);
+                asset.setAssetName(line[1]);
                 asset.setAssetAmount(new BigDecimal(line[2]));
                 asset.setDurationMonths(line[3]);
 
-                // 🛠 Handle optional or blank dates safely
                 if (line[4] != null && !line[4].trim().isEmpty()) {
                     asset.setPurchasedDate(LocalDate.parse(line[4].trim(), csvFormatter));
                 }
@@ -76,8 +77,10 @@ public class AssetServiceImpl implements AssetService {
                 }
 
                 asset.setStatus(line[7]);
-                asset.setName(line[8]);
-                asset.setLocation(line[9]);
+
+                //
+                asset.setName("Udegbue Paul");
+                asset.setLocation("Lagos, Nigeria");
 
                 assets.add(asset);
             }
@@ -85,10 +88,12 @@ public class AssetServiceImpl implements AssetService {
             assetRepository.saveAll(assets);
             System.out.println("Assets loaded from CSV successfully.");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
     @Override
     public AssetPageData getAssetPageData() {
         List<Asset> assets = assetRepository.findAll();
@@ -117,7 +122,7 @@ public class AssetServiceImpl implements AssetService {
 
         // ✅ Initialize and populate AssetPageData
         AssetPageData data = new AssetPageData();
-        data.setName("Bitwire Asset Registry");
+        data.setName("Udegbue Paul");
 
         if (!assets.isEmpty() && assets.get(0).getLocation() != null) {
             data.setLocation(assets.get(0).getLocation());
