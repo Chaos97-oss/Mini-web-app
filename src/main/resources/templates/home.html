@@ -7,6 +7,18 @@
     <h1 th:text="'Name: ' + ${name}"></h1>
     <h2 th:text="'Location: ' + ${location}"></h2>
 
+    <form th:action="@{/assets}" th:object="${asset}" method="post">
+        <label>Asset Name: <input type="text" th:field="*{assetName}" /></label><br/>
+        <label>Category: <input type="text" th:field="*{category}" /></label><br/>
+        <label>Amount: <input type="number" th:field="*{amount}" /></label><br/>
+        <label>Useful Life (Years): <input type="number" th:field="*{usefulLife}" /></label><br/>
+        <label>Purchase Date: <input type="date" th:field="*{purchasedDate}" /></label><br/>
+        <label>Branch: <input type="text" th:field="*{branch}" /></label><br/>
+        <button type="submit">Add Asset</button>
+    </form>
+
+    <hr/>
+
     <table border="1">
         <thead>
             <tr>
@@ -24,8 +36,8 @@
             <tr th:each="asset : ${assets}">
                 <td th:text="${asset.category}"></td>
                 <td th:text="${asset.assetName}"></td>
-                <td th:text="${asset.Amount}"></td>
-                <td th:text="${asset.duration}"></td>
+                <td th:text="${asset.amount}"></td>
+                <td th:text="${asset.usefulLife} + ' yrs'"></td>
                 <td th:text="${asset.purchasedDate}"></td>
                 <td th:text="${asset.branch}"></td>
                 <td th:text="${asset.lastDepreciationDate}"></td>

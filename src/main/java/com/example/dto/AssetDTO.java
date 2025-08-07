@@ -12,6 +12,7 @@ public class AssetDTO {
     private String branch;
     private String lastDepreciationDate;
     private String status;
+    private Integer usefulLife;
 
     // Getters and Setters
     public String getCategory() { return category; }
@@ -47,4 +48,13 @@ public class AssetDTO {
     public String getStatus() { return status; }
 
     public void setStatus(String status) { this.status = status; }
+    
+    public Integer getUsefulLife() {
+        return usefulLife;
+    }
+
+    
+    public void setUsefulLife(Integer usefulLife) {
+        this.usefulLife = usefulLife;
+    }
 }

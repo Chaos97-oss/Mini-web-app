@@ -134,4 +134,16 @@ public class AssetServiceImpl implements AssetService {
         return data;
     }
 
+
+    @Override
+    public void saveAsset(AssetDTO dto) {
+        Asset asset = new Asset();
+        asset.setName(dto.getName());
+        asset.setAmount(dto.getAmount());
+        asset.setUsefulLife(dto.getUsefulLife());
+        asset.setPurchaseDate(dto.getPurchaseDate());
+        asset.setBranch(dto.getBranch());
+        asset.setStatus("Active");
+        assetRepository.save(asset);
+    }
 }
