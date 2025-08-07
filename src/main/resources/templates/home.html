@@ -2,24 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Asset Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        input {
+            padding: 5px;
+            margin-left: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <h1 th:text="'Name: ' + ${name}"></h1>
     <h2 th:text="'Location: ' + ${location}"></h2>
 
     <form th:action="@{/assets}" th:object="${asset}" method="post">
-        <label>Asset Name: <input type="text" th:field="*{assetName}" /></label><br/>
-        <label>Category: <input type="text" th:field="*{category}" /></label><br/>
-        <label>Amount: <input type="number" th:field="*{amount}" /></label><br/>
-        <label>Useful Life (Years): <input type="number" th:field="*{usefulLife}" /></label><br/>
-        <label>Purchase Date: <input type="date" th:field="*{purchasedDate}" /></label><br/>
-        <label>Branch: <input type="text" th:field="*{branch}" /></label><br/>
+        <label>Asset Name: <input type="text" th:field="*{assetName}" /></label>
+        <label>Category: <input type="text" th:field="*{category}" /></label>
+        <label>Amount: <input type="number" th:field="*{amount}" /></label>
+        <label>Useful Life (Years): <input type="number" th:field="*{usefulLife}" /></label>
+        <label>Purchase Date: <input type="date" th:field="*{purchasedDate}" /></label>
+        <label>Branch: <input type="text" th:field="*{branch}" /></label>
         <button type="submit">Add Asset</button>
     </form>
 
     <hr/>
 
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Category</th>
