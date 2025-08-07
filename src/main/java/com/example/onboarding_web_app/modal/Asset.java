@@ -25,11 +25,23 @@ public class Asset {
     private String status;
     private String name;
     private String location;
-    public Integer getDurationMonths() {
-    return durationMonths;
+    private Integer usefulLife;
+
+//     public Integer getDurationMonths() {
+//     return durationMonths;
+// }
+
+// public void setDurationMonths(Integer durationMonths) {
+//     this.durationMonths = durationMonths;
+// }
+
+// public Integer getUsefulLife() {
+//     return usefulLife;
+// }
+
+// public void setUsefulLife(Integer usefulLife) {
+//     this.usefulLife = usefulLife;
+// }
+
 }
 
-public void setDurationMonths(Integer durationMonths) {
-    this.durationMonths = durationMonths;
-}
-}

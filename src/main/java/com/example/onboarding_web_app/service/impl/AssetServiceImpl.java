@@ -106,13 +106,13 @@ public class AssetServiceImpl implements AssetService {
             dto.setDuration(asset.getDurationMonths());
 
             if (asset.getPurchasedDate() != null) {
-                dto.setPurchasedDate(asset.getPurchasedDate().format(displayFormatter)); 
+                dto.setPurchasedDate(asset.getPurchasedDate()); 
             }
 
             dto.setBranch(asset.getBranch());
 
             if (asset.getLastDepDate() != null) {
-                dto.setLastDepreciationDate(asset.getLastDepDate().format(displayFormatter));
+                dto.setLastDepreciationDate(asset.getLastDepDate()); 
             }
 
             dto.setStatus(asset.getStatus());
@@ -137,19 +137,25 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public void saveAsset(AssetDTO dto) {
         Asset asset = new Asset();
+
         asset.setName(dto.getName());
         asset.setLocation(dto.getLocation());
+        asset.setAssetName(dto.getAssetName());
+        asset.setCategoryId(dto.getCategory());
         asset.setAssetAmount(dto.getAmount());
+        asset.setDurationMonths(dto.getDuration());
         asset.setUsefulLife(dto.getUsefulLife());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy"); 
-
-        if (dto.getPurchasedDate() != null && !dto.getPurchasedDate().isEmpty()) {
-            asset.setPurchasedDate(LocalDate.parse(dto.getPurchasedDate(), formatter));
-        }
-
         asset.setBranch(dto.getBranch());
         asset.setStatus("Active");
+
+        if (dto.getPurchasedDate() != null) {
+            asset.setPurchasedDate(dto.getPurchasedDate());
+        }
+
+        if (dto.getLastDepreciationDate() != null) {
+            asset.setLastDepDate(dto.getLastDepreciationDate());
+        }
+
         assetRepository.save(asset);
     }
 

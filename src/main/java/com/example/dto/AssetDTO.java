@@ -2,15 +2,19 @@ package com.example.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AssetDTO {
 
     private String category;
     private String assetName;
     private BigDecimal amount;
     private Integer duration;
-    private String purchasedDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate purchasedDate;
     private String branch;
-    private String lastDepreciationDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate lastDepreciationDate;
     private String status;
     private Integer usefulLife;
     private String name;
@@ -33,17 +37,17 @@ public class AssetDTO {
 
     public void setDuration(Integer duration) { this.duration = duration; }
 
-    public String getPurchasedDate() { return purchasedDate; }
+    public LocalDate getPurchasedDate() { return purchasedDate; }
 
-    public void setPurchasedDate(String purchasedDate) { this.purchasedDate = purchasedDate; }
+    public void setPurchasedDate(LocalDate purchasedDate) { this.purchasedDate = purchasedDate; }
 
     public String getBranch() { return branch; }
 
     public void setBranch(String branch) { this.branch = branch; }
 
-    public String getLastDepreciationDate() { return lastDepreciationDate; }
+    public LocalDate getLastDepreciationDate() { return lastDepreciationDate; }
 
-    public void setLastDepreciationDate(String lastDepreciationDate) {
+    public void setLastDepreciationDate(LocalDate lastDepreciationDate) {
         this.lastDepreciationDate = lastDepreciationDate;
     }
 
@@ -60,7 +64,7 @@ public class AssetDTO {
         this.usefulLife = usefulLife;
     }
 
-    
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 

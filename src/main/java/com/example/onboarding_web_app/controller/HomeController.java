@@ -36,10 +36,15 @@ public class HomeController {
         assetService.saveAsset(assetDto);
         return "redirect:/";
     }
-    
+
     @ModelAttribute("asset")
     public AssetDTO assetDTO() {
         return new AssetDTO();
     }
 
+    @PostMapping("/addAsset")
+    public String addAsset(@ModelAttribute("asset") AssetDTO assetDTO, Model model) {
+        assetService.saveAsset(assetDTO);
+        return "redirect:/assets"; 
+    }
 }
