@@ -37,7 +37,7 @@
                 <td th:text="${asset.category}"></td>
                 <td th:text="${asset.assetName}"></td>
                 <td th:text="${asset.amount}"></td>
-                <td th:text="${asset.usefulLife} + ' yrs'"></td>
+                <td th:text="${asset.duration != null} ? ${#numbers.formatDecimal(asset.duration / 12, 0, 0)} + ' yrs' : 'N/A'"></td>
                 <td th:text="${asset.purchasedDate}"></td>
                 <td th:text="${asset.branch}"></td>
                 <td th:text="${asset.lastDepreciationDate}"></td>

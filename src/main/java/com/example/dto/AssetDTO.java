@@ -7,12 +7,14 @@ public class AssetDTO {
     private String category;
     private String assetName;
     private BigDecimal amount;
-    private String duration;
+    private Integer duration;
     private String purchasedDate;
     private String branch;
     private String lastDepreciationDate;
     private String status;
     private Integer usefulLife;
+    private String name;
+    private String location;
 
     // Getters and Setters
     public String getCategory() { return category; }
@@ -27,9 +29,9 @@ public class AssetDTO {
 
     public void setAmount(BigDecimal amount) { this.amount = amount; }
 
-    public String getDuration() { return duration; }
+    public Integer getDuration() { return duration; }
 
-    public void setDuration(String duration) { this.duration = duration; }
+    public void setDuration(Integer duration) { this.duration = duration; }
 
     public String getPurchasedDate() { return purchasedDate; }
 
@@ -57,4 +59,12 @@ public class AssetDTO {
     public void setUsefulLife(Integer usefulLife) {
         this.usefulLife = usefulLife;
     }
+
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
 }

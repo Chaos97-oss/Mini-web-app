@@ -18,11 +18,18 @@ public class Asset {
     private String categoryId;
     private String assetName;
     private BigDecimal assetAmount;
-    private String durationMonths;
+    private Integer durationMonths;
     private LocalDate purchasedDate;
     private String branch;
     private LocalDate lastDepDate;
     private String status;
     private String name;
     private String location;
+    public Integer getDurationMonths() {
+    return durationMonths;
+}
+
+public void setDurationMonths(Integer durationMonths) {
+    this.durationMonths = durationMonths;
+}
 }

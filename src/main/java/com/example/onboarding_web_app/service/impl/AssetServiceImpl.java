@@ -64,8 +64,7 @@ public class AssetServiceImpl implements AssetService {
                 asset.setCategoryId(line[0]);
                 asset.setAssetName(line[1]);
                 asset.setAssetAmount(new BigDecimal(line[2]));
-                asset.setDurationMonths(line[3]);
-
+                asset.setDurationMonths(Integer.parseInt(line[3]));
                 if (line[4] != null && !line[4].trim().isEmpty()) {
                     asset.setPurchasedDate(LocalDate.parse(line[4].trim(), csvFormatter));
                 }
@@ -107,7 +106,7 @@ public class AssetServiceImpl implements AssetService {
             dto.setDuration(asset.getDurationMonths());
 
             if (asset.getPurchasedDate() != null) {
-                dto.setPurchasedDate(asset.getPurchasedDate().format(displayFormatter)); // e.g. 11 February 2023
+                dto.setPurchasedDate(asset.getPurchasedDate().format(displayFormatter)); 
             }
 
             dto.setBranch(asset.getBranch());
@@ -139,11 +138,19 @@ public class AssetServiceImpl implements AssetService {
     public void saveAsset(AssetDTO dto) {
         Asset asset = new Asset();
         asset.setName(dto.getName());
-        asset.setAmount(dto.getAmount());
+        asset.setLocation(dto.getLocation());
+        asset.setAssetAmount(dto.getAmount());
         asset.setUsefulLife(dto.getUsefulLife());
-        asset.setPurchaseDate(dto.getPurchaseDate());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy"); 
+
+        if (dto.getPurchasedDate() != null && !dto.getPurchasedDate().isEmpty()) {
+            asset.setPurchasedDate(LocalDate.parse(dto.getPurchasedDate(), formatter));
+        }
+
         asset.setBranch(dto.getBranch());
         asset.setStatus("Active");
         assetRepository.save(asset);
     }
+
 }
